@@ -10,7 +10,7 @@ Il seguente standard consente l'implementazione di un'API standard per i token a
 
 Per maggiori informazioni riguardo Solidity Language e lo Standard ERC-20 Standard consultare i seguenti link
 
-- [Solidity](https://solidity.readthedocs.io/en/v0.6.8/): 
+- [Solidity](https://solidity.readthedocs.io/en/v0.6.8/) 
 - [ERC-20](https://ethereum.org/it/developers/docs/standards/tokens/erc-20/)
 
 ### Contract
