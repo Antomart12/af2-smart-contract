@@ -1,118 +1,117 @@
-# ERC20 Token
+# ERC-20 Token
 
-Creazione di un ERC-20 standard Ethereum Token.
+Creation of an ERC-20 standard Ethereum token.
 
 ## Erc-20
 
-ERC-20 è l'interfaccia standard. 
+ERC-20 is the standard interface that allows the implementation of a standard API for tokens within Smart Contracts. 
 
-Il seguente standard consente l'implementazione di un'API standard per i token all'interno degli Smart Contract. 
-
-Per maggiori informazioni riguardo Solidity Language e lo Standard ERC-20 Standard consultare i seguenti link
+For more information about Solidity Language and the ERC-20 Standard, see the following links:
 
 - [Solidity](https://solidity.readthedocs.io/en/v0.6.8/) 
 - [ERC-20](https://ethereum.org/it/developers/docs/standards/tokens/erc-20/)
 
 ### Contract
 
-Il contratto eredita le funzioni presenti nell'interfaccia standard _IERC20_ la quale contiene tutte le funzioni con le relative
-dichiarazioni ed il corpo vuoto.
-Quest'ultimo viene inizializzato e compilato nel contratto che lo eredita.
+The contract inherits the functions present in the standard interface _IERC20_ which contains all the functions 
+with the relative declarations and the empty body; the latter is initialized and compiled in the contract that inherits it.
 
 ### Constructor
 
-Il `constructor` setta il `name`, `symbol`, `decimals` e `totalSupply` del token ed il balance del msg.sender.
+The `constructor` sets the` name`, `symbol`,` decimals` and `totalSupply` of the token and the balance of the msg.sender.
 
 ### Balance
 
-La view function `balanceOf` ritorna il balance dell'address di un `account`.
+The `balanceOf` view function returns the balance of an` account` address.
 
 ### Transfer and Transfer From
 
-La funzione `transfer` viene chiamata da un account e trasferisce un certo `amount` di token, ad un altro address `recipient`.
+The `transfer` function is called from one account and transfers a certain `amount` of token, to another `recipient` address.
 
-La funzione `transferFrom` permette ad un account che non sia l'owner di trasferire `amount` , un certo numero di token, da un determinato address `sender` ad un altro `recipient`.
+The `transferFrom` function allows an account other than the owner to transfer the `amount`, a certain number of tokens, from a 
+given `sender` address to another` recipient`.
 
-Entrambe le funzioni fanno un trigger  dell'evento di `Transfer`.
+Both functions trigger the `Transfer` event.
 
 ### Approve
 
-La funzione di `approve` permette ad un account `spender` di poter utilizzare un certo `amount` di token tramite l'approvazione dell'`owner`.
-
+The `approve` function allows a `spender` account to use a certain `amount` of tokens via the` owner` approval.
 
 ### Allowance
 
-La view function `allowance` ritorna il valore che l'address `spender` è abilitato a spendere tramite il permesso dell'`owner`.
+The `allowance` view function returns the value that the `spender` address is allowed to spend via the `owner` permission.
 
 ## Erc-20 imports
 
 ### IERC20 
 
-Il contratto eredita le funzioni presenti nell'interfaccia standard _IERC20_ la quale contiene tutte le funzioni con le relative
-dichiarazioni ed il corpo vuoto.
-Quest'ultimo viene inizializzato e compilato nel contratto che lo eredita.
+The contract inherits the functions present in the standard interface _IERC20_ which contains all the functions with their relative
+statements and the empty body; the latter is initialized and compiled in the contract that inherits it.
 
 ### Ownable
 
-Il contratto Ownable fornisce un meccanismo di controllo degli accessi di base, in cui è presente un account (un proprietario) a cui può essere concesso l'accesso esclusivo a funzioni specifiche.
+The Ownable Agreement provides a basic access control mechanism, where there is an account (one owner) who can be granted exclusive 
+access to specific functions.
 
-Questo modulo viene utilizzato attraverso l'ereditarietà.
+This module is used through inheritance; it will make available the `onlyOwner` modifier, which can be applied to functions to limit their use to the owner.
 
-Renderà disponibile il modificatore `onlyOwner`, che può essere applicato alle funzioni per limitarne l'uso al proprietario.
-
-Di default, l'`owner` sarà colui che distribuisce il contratto e l'indirizzo può essere modificato con il metodo `transferOwnership`.
+By default, the `owner` will be the one who distributes the contract and the address can be changed with the `transferOwnership` method.
 
 ### Context
 
-Il contratto Context fornisce informazioni sul contesto di esecuzione corrente:
-mittente della transazione e i suoi dati. 
+The Context contract provides information about the current execution context: 
+sender of the transaction and its data.
 
 # Sale Contract 
-Creazione di uno smart contract per l'acquisto e vendita dei token.
+
+Creation of a smart contract for the purchase and sale of tokens.
 
 ### Contract
-Il contratto importa il token ERC20.
+
+The contract imports the ERC-20 token.
 
 ### Constructor
 
-Il `constructor` imposta l'`admin`, `tokenContract` ovvero l'interazione con il contratto del token, `tokenPrice` ovvero il prezzo del token stabilito in fase di deploy.
+The `constructor` sets the `admin`, `tokenContract` which is the interaction with the token contract, `tokenPrice` which is the price of the token established during the deployment phase.
 
 ### buyTokens
 
-La payable function `buyTokens` permette l'acquisto di un determinato `_numberOfTokens` e fa un trigger dell'evento di Sell.
+The `buyTokens` payable function allows the purchase of a certain `_numberOfTokens` and triggers the Sell event.
 
 ### endSale
-La funzione di `endSale` ritorna tutti i tokens non venduti all'admin del contratto e può essere richiamata solo da quest'ultimo.
 
-### Requisiti per l'utilizzo della repository
+The `endSale` function returns all unsold tokens to the contract admin and can only be called by the contract admin.
 
-Compilazione, tests e dedploy del contratto possono essere eseguiti con l'ausilio del framework *Truffle*.
+### Requirements for using the repository
+
+Contract compilation, tests and deployment can be performed with the help of the *Truffle* framework.
 
 - [Node.js](https://nodejs.org/download/release/latest-v10.x/)
 - [Truffle](https://www.trufflesuite.com/truffle)
 
 ## Usage
 
-Lanciare da terminale il seguente comando:
+Run the following command from the terminal:
 
 ```sh
 npm install
 npm install -g truffle
 ```
-Tutte le dipendenze relative al progetto e Truffle verranno installate globalmente.
+All dependencies related to the project and Truffle will be installed globally.
 
 ### Compile contracts
 
-Utilizzando il seguente comando:
+Using the following command:
+
 ```sh
 truffle compile
 ```
- saranno disponibili nella cartella `build/contracts/`informazioni relative al contratto in formato JSON come l'ABI, l'address ecc..
+Contract information in JSON format (such as ABI, address, ...) will be available in the `build / contracts /` directory.
 
 
 ### Run tests on Truffle
  
-È possibile fare un test dei file presenti nella cartella `/test` lanciando da terminale il comando:
+It's possible to test the files in the `/ test` directory by running the command:
 
 ```sh
 truffle test
@@ -120,10 +119,10 @@ truffle test
 
 ### Run migration and deploy contracts
 
-Comando per la migrate:
+Command for migrate:
 
 ```sh
 truffle migrate --reset --network development // mainnet, rinkeby, polygon, mumbai...
 ```
 
-Dopo la migration, potrai visualizzare l'address del deployer e del contratto.
+After the migration, you will be able to view the deployer and contract address.
